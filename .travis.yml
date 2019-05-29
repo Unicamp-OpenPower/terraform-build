@@ -38,9 +38,6 @@ before_script:
 - git config --global url.https://github.com/.insteadOf ssh://git@github.com/
 
 script:
-- bash scripts/gogetcookie.sh
-- make tools
-- git config --global url.https://github.com/.insteadOf ssh://git@github.com/  
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
 - sudo chmod 777 terraform
