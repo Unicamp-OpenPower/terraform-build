@@ -24,7 +24,7 @@ before_install:
   - unzip consul.zip
   - mkdir -p ~/bin
   - mv consul ~/bin
-  - export PATH="~/bin:$PATH""
+  - export PATH="~/bin:$PATH"
 
 install:
 # This script is used by the Travis build to install a cookie for
