@@ -41,7 +41,7 @@ script:
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
 - sudo chmod 777 terraform
-- ./terraform
+- ./terraform -help
 
 #- make test
 #- go mod verify
