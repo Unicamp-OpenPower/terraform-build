@@ -41,8 +41,6 @@ before_script:
 script:
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
-- pwd
-- ls -a
 - sudo chmod 777 terraform
 - ./terraform -help
 
