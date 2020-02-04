@@ -1,11 +1,12 @@
-os: linux-ppc64le
-dist: trusty
+os: linux
+arch: ppc64le
+dist: bionic
 sudo: required
 services:
   - docker
 language: go
 go:
-- "1.12.4"
+- "1.13.x"
 
 # add TF_CONSUL_TEST=1 to run consul tests
 # they were causing timouts in travis
@@ -40,6 +41,8 @@ before_script:
 script:
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
+- pwd
+- ls -a
 - sudo chmod 777 terraform
 - ./terraform -help
 
