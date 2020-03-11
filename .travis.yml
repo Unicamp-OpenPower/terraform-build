@@ -42,6 +42,7 @@ before_script:
 - git config --global url.https://github.com/.insteadOf ssh://git@github.com/
 
 script:
+- go mod vendor
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
 - sudo chmod 777 terraform
