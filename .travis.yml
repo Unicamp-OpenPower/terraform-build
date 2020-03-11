@@ -21,7 +21,7 @@ before_install:
   - rm -rf terraform
   - git clone https://github.com/hashicorp/terraform.git
   - cd terraform
-  - git checkout bc7b03e0edfd8b669b542cf89cfb7ad6f34dbf5e
+  - git checkout 43c1ec69e2739ebb036a7fe871d9ff0bde4acc59
   - curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
   - unzip consul.zip
   - mkdir -p ~/bin
