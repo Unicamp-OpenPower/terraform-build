@@ -34,16 +34,17 @@ install:
 # go.googlesource.com so rate limits are higher when using `go get` to fetch
 # packages that live there.
 # See: https://github.com/golang/go/issues/12933
+- go mod vendor
 - bash scripts/gogetcookie.sh
 - make tools
-#- make test
+- make test
 - go mod verify
 
 before_script:
 - git config --global url.https://github.com/.insteadOf ssh://git@github.com/
 
 script:
-- go mod vendor
+#- go mod vendor
 - XC_OS=linux XC_ARCH=ppc64le make bin
 - cd bin
 - ls
