@@ -36,7 +36,7 @@ install:
 # See: https://github.com/golang/go/issues/12933
 - bash scripts/gogetcookie.sh
 - make tools
-- make test
+#- make test
 - go mod verify
 
 before_script:
