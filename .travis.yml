@@ -37,7 +37,7 @@ install:
 - go mod vendor
 - bash scripts/gogetcookie.sh
 - make tools
-- make test
+#- make test
 - go mod verify
 
 before_script:
