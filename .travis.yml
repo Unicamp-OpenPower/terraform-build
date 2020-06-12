@@ -11,10 +11,8 @@ go:
 env:
   - CONSUL_VERSION=0.7.5 GOMAXPROCS=4 GO111MODULE=on
 
-# Fetch consul for the backend and provider tests
-before_install:
+install:
   - git clone https://github.com/hashicorp/terraform.git
-  #- git clone https://github.com/jr-santos98/terraform.git
   - cd terraform
   #- git checkout 43c1ec69e2739ebb036a7fe871d9ff0bde4acc59
   - curl -sLo consul.zip https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
@@ -23,31 +21,16 @@ before_install:
   - mv consul ~/bin
   - export PATH="~/bin:$PATH"
 
-install:
-# This script is used by the Travis build to install a cookie for
-# go.googlesource.com so rate limits are higher when using `go get` to fetch
-# packages that live there.
-# See: https://github.com/golang/go/issues/12933
+script:
 - go mod vendor
 - bash scripts/gogetcookie.sh
-#- make tools
-#- make test
 - go mod verify
-
-before_script:
-- git config --global url.https://github.com/.insteadOf ssh://git@github.com/
-
-script:
-#- go mod vendor
-#- XC_OS=linux XC_ARCH=ppc64le make bin
+- make fmtcheck generate
 - XC_OS=linux XC_ARCH=ppc64le bash scripts/build.sh
 - cd bin
 - ls
 - sudo chmod 777 terraform
-- ./terraform -help
-#- make e2etest
-# website-test is temporarily disabled while we get the website build back in shape after the v0.12 reorganization
-#- make website-test
+- ./terraform --version
 
 notifications:
   slack:
