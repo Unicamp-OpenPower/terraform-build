@@ -8,17 +8,11 @@ language: go
 go:
 - "1.13.x"
 
-# add TF_CONSUL_TEST=1 to run consul tests
-# they were causing timouts in travis
-# add TF_ETCDV3_TEST=1 to run etcdv3 tests
-# if added, TF_ETCDV3_ENDPOINTS must be set to a comma-separated list of (insecure) etcd endpoints against which to test
 env:
   - CONSUL_VERSION=0.7.5 GOMAXPROCS=4 GO111MODULE=on
 
 # Fetch consul for the backend and provider tests
 before_install:
-  - cd ..
-  - rm -rf terraform
   - git clone https://github.com/hashicorp/terraform.git
   #- git clone https://github.com/jr-santos98/terraform.git
   - cd terraform
@@ -36,7 +30,7 @@ install:
 # See: https://github.com/golang/go/issues/12933
 - go mod vendor
 - bash scripts/gogetcookie.sh
-- make tools
+#- make tools
 #- make test
 - go mod verify
 
@@ -45,7 +39,8 @@ before_script:
 
 script:
 #- go mod vendor
-- XC_OS=linux XC_ARCH=ppc64le make bin
+#- XC_OS=linux XC_ARCH=ppc64le make bin
+- XC_OS=linux XC_ARCH=ppc64le bash scripts/build.sh
 - cd bin
 - ls
 - sudo chmod 777 terraform
